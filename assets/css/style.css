@@ -1,0 +1,7 @@
+.selected {
+  border: 3px solid black;
+}
+
+.enemy {
+  border: 3px solid red;
+}
