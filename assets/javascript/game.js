@@ -103,18 +103,34 @@ var character4 = {
   }
 }
 
-$( document ).ready(function() {
-
-  character1.div();
-  character2.div();
-  character3.div();
-  character4.div();
+function setData(){
   $("#char1").data(character1);
   $("#char2").data(character2);
   $("#char3").data(character3);
   $("#char4").data(character4);
+}
+
+function createDivs(){
+  character1.div();
+  character2.div();
+  character3.div();
+  character4.div();
+}
+
+function callRedo(){
+  character1.redo();
+  character2.redo();
+  character3.redo();
+  character4.redo();
+}
+
+$( document ).ready(function() {
+
+  createDivs();
+  setData();
 
   $(".char").on("click", function(){
+
     if(madeSelection === false){
       var siblings = $(this).siblings(".char");
       siblings.addClass("enemy");
@@ -124,9 +140,11 @@ $( document ).ready(function() {
       heroHP = $(this).find(`[id*="hp"]`);
       madeSelection = true;
     }
+
   })
 
  $("#to-attack").on("click", ".char.enemy", function(){
+
    if (defenderSelection === false) {
       $(this).appendTo($("#defender"));
       villain = $(this).data();
@@ -134,38 +152,44 @@ $( document ).ready(function() {
       villainHP = $(this).find('[id*="hp"]')
       $("#fight").prop('disabled', false);
    }
+
  })
 
  $("#fight").on("click", function(){
+
    villain.healthPoints -= hero.attackPower;
    hero.healthPoints -= villain.attackPower;
    hero.attackPower += hero.baseAttackPower;
    villainHP.html("HP " + villain.healthPoints);
    heroHP.html("HP " + hero.healthPoints);
-   // if(hero.healthPoints <= 0){
-   //  alert("You lose!");
-   //  character1.redo();
-   //  character2.redo();
-   //  character3.redo();
-   //  character4.redo();
-   // }
+
+   if(hero.healthPoints <= 0){
+    alert("You lose!");
+    hero.clear();
+    $(".enemy").toggle();
+    callRedo();
+    setData();
+    madeSelection = false;
+    defenderSelection = false;
+   }
+
    if(villain.healthPoints <= 0){
     villain.clear();
     villainsLeft--;
     defenderSelection = false;
     $("#fight").prop('disabled', true);
    }
+
    if(villainsLeft === 0){
     alert("You win!");
     madeSelection = false;
     defenderSelection = false;
     villainsLeft = 3;
     hero.clear();
-    character1.redo();
-    character2.redo();
-    character3.redo();
-    character4.redo();
+    callRedo();
+    setData();
    }
+
  })
 
 })
