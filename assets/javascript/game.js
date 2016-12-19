@@ -15,18 +15,23 @@ var character1 = {
   hpID: "hp1",
   div: function(){
     $("#char1").append("<div class='thumbnail' >" + "<h3 class='text-center'>" + character1.name + "</h3>" +
-        "<img src='http://placehold.it/250x150'>" +
+        "<img src='http://placehold.it/100x100'>" +
         "<h3 id='hp1' class='text-center'>HP " + character1.healthPoints + "</h3>" + "</div>")
   },
   clear: function(){
-    $("#char1").toggle();
+    if($("#char1").is(':visible')){
+      $("#char1").toggle();
+    }
   },
   redo: function() {
     this.healthPoints = 100;
     this.attackPower = 10;
     this.baseAttackPower = 10;
     this.counterAttackPower = 15;
-    $("#char1").toggle().removeClass("enemy selected").appendTo("#choose-char");
+    if($("#char1").is(':hidden')){
+      $("#char1").toggle();
+    }
+    $("#char1").removeClass("enemy selected").appendTo("#choose-char");
     $("#hp1").html("HP " + this.healthPoints);
   }
 }
@@ -39,18 +44,23 @@ var character2 = {
   counterAttackPower: 20,
   div: function(){
     $("#char2").append("<div class='thumbnail'>" + "<h3 class='text-center'>" + character2.name + "</h3>" +
-        "<img src='http://placehold.it/250x150'>" +
+        "<img src='http://placehold.it/100x100'>" +
         "<h3 id='hp2' class='text-center'>HP " + character2.healthPoints + "</h3>" + "</div>")
   },
   clear: function(){
-    $("#char2").toggle();
+    if($("#char2").is(':visible')){
+      $("#char2").toggle();
+    }
   },
   redo: function() {
     this.healthPoints = 150;
     this.attackPower = 20;
     this.baseAttackPower = 20;
     this.counterAttackPower = 20;
-    $("#char2").toggle().removeClass("enemy selected").appendTo("#choose-char");
+    if($("#char2").is(':hidden')){
+      $("#char2").toggle();
+    }
+    $("#char2").removeClass("enemy selected").appendTo("#choose-char");
     $("#hp2").html("HP " + this.healthPoints);
   }
 }
@@ -63,18 +73,23 @@ var character3 = {
   counterAttackPower: 25,
   div: function(){
     $("#char3").append("<div class='thumbnail'>" + "<h3 class='text-center'>" + character3.name + "</h3>" +
-        "<img src='http://placehold.it/250x150'>" +
+        "<img src='http://placehold.it/100x100'>" +
         "<h3 id='hp3' class='text-center'>HP " + character3.healthPoints + "</h3>" + "</div>")
   },
   clear: function(){
-    $("#char3").toggle();
+    if($("#char3").is(':visible')){
+      $("#char3").toggle();
+    }
   },
   redo: function() {
     this.healthPoints = 130;
     this.attackPower = 11;
     this.baseAttackPower = 11;
     this.counterAttackPower = 25;
-    $("#char3").toggle().removeClass("enemy selected").appendTo("#choose-char");
+    if($("#char3").is(':hidden')){
+      $("#char3").toggle();
+    }
+    $("#char3").removeClass("enemy selected").appendTo("#choose-char");
     $("#hp3").html("HP " + this.healthPoints);
   }
 }
@@ -87,18 +102,23 @@ var character4 = {
   counterAttackPower: 21,
   div: function(){
     $("#char4").append("<div class='thumbnail'>" + "<h3 class='text-center'>" + character4.name + "</h3>" +
-        "<img src='http://placehold.it/250x150'>" +
+        "<img src='http://placehold.it/100x100'>" +
         "<h3 id='hp4' class='text-center'>HP " + character4.healthPoints + "</h3>" + "</div>")
   },
   clear: function(){
-    $("#char4").toggle();
+    if($("#char4").is(':visible')){
+      $("#char4").toggle();
+    }
   },
   redo: function() {
     this.healthPoints = 170;
     this.attackPower = 17;
     this.baseAttackPower = 17;
     this.counterAttackPower = 21;
-    $("#char4").toggle().removeClass("enemy selected").appendTo("#choose-char");
+    if($("#char4").is(':hidden')){
+      $("#char4").toggle();
+    }
+    $("#char4").removeClass("enemy selected").appendTo("#choose-char");
     $("#hp4").html("HP " + this.healthPoints);
   }
 }
@@ -158,6 +178,7 @@ $( document ).ready(function() {
  $("#fight").on("click", function(){
 
    villain.healthPoints -= hero.attackPower;
+   console.log(villain.name + villain.healthPoints);
    hero.healthPoints -= villain.attackPower;
    hero.attackPower += hero.baseAttackPower;
    villainHP.html("HP " + villain.healthPoints);
@@ -166,7 +187,6 @@ $( document ).ready(function() {
    if(hero.healthPoints <= 0){
     alert("You lose!");
     hero.clear();
-    $(".enemy").toggle();
     callRedo();
     setData();
     madeSelection = false;
@@ -175,6 +195,7 @@ $( document ).ready(function() {
 
    if(villain.healthPoints <= 0){
     villain.clear();
+    console.log("villain cleared");
     villainsLeft--;
     defenderSelection = false;
     $("#fight").prop('disabled', true);
