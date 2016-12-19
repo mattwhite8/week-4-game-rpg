@@ -109,6 +109,7 @@ var character4 = {
   },
   clear: function(){
     if($("#char4").is(':visible')){
+      console.log("clear ran");
       $("#char4").toggle();
     }
   },
@@ -146,6 +147,27 @@ function callRedo(){
   character4.redo();
 }
 
+function heroAttack(){
+  villainDiv.effect("shake");
+  villain.healthPoints -= hero.attackPower;
+  hero.attackPower += hero.baseAttackPower;
+  villainHP.html("HP " + villain.healthPoints);
+  if(villain.healthPoints <= 0){
+    villainDied();
+  } else if(hero.healthPoints > 0){
+    setTimeout(villainAttack, 1000);
+  }
+}
+
+function villainAttack(){
+  heroDiv.effect("shake");
+  hero.healthPoints -= villain.attackPower;
+  heroHP.html("HP " + hero.healthPoints);
+  if(hero.healthPoints <= 0){
+    heroDied();
+   }  
+}
+
 function heroDied(){
   alert("You lose!");
   hero.clear();
@@ -156,6 +178,7 @@ function heroDied(){
 }
 
 function villainDied(){
+  console.log("villain died");
   villain.clear();
   villainsLeft--;
   defenderSelection = false;
@@ -163,15 +186,13 @@ function villainDied(){
 }
 
 function winCondition(){
-   if(villainsLeft === 0){
-    alert("You win!");
-    madeSelection = false;
-    defenderSelection = false;
-    villainsLeft = 3;
-    hero.clear();
-    callRedo();
-    setData();
-   }
+  alert("You win!");
+  madeSelection = false;
+  defenderSelection = false;
+  villainsLeft = 3;
+  hero.clear();
+  callRedo();
+  setData();
 }
 
 $( document ).ready(function() {
@@ -182,6 +203,7 @@ $( document ).ready(function() {
   $(".char").on("click", function(){
 
     if(madeSelection === false){
+      console.log(".char ran");
       var siblings = $(this).siblings(".char");
       siblings.addClass("enemy");
       siblings.appendTo($("#to-attack"));
@@ -197,6 +219,7 @@ $( document ).ready(function() {
  $("#to-attack").on("click", ".char.enemy", function(){
 
    if (defenderSelection === false) {
+      console.log("to-attack ran");
       $(this).appendTo($("#defender"));
       villain = $(this).data();
       defenderSelection = true;
@@ -209,24 +232,13 @@ $( document ).ready(function() {
 
  $("#fight").on("click", function(){
 
-   heroDiv.effect("shake");
-   villainDiv.effect("shake");
-   villain.healthPoints -= hero.attackPower;
-   hero.healthPoints -= villain.attackPower;
-   hero.attackPower += hero.baseAttackPower;
-   villainHP.html("HP " + villain.healthPoints);
-   heroHP.html("HP " + hero.healthPoints);
+   heroAttack();
 
-   if(hero.healthPoints <= 0){
-    setTimeout(heroDied, 1000);
-   }
-
-   if(villain.healthPoints <= 0){
-    setTimeout(villainDied, 800);
+   if(villainsLeft === 0){
+    winCondition();
    }
 
  })
   
-setInterval(winCondition, 1100);
 
 })
