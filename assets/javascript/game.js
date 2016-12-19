@@ -11,59 +11,59 @@ var villainDiv;
 var character1 = {
   name: "Matt",
   healthPoints: 100,
-  attackPower: 10,
-  baseAttackPower: 10,
-  counterAttackPower: 15,
+  attackPower: 15,
+  baseAttackPower: 15,
+  counterAttackPower: 20,
   hpID: "hp1",
   div: function(){
     $("#char1").append("<div class='thumbnail' >" + "<h5 class='text-center'>" + character1.name + "</h5>" +
         "<img src='http://placehold.it/242x200'>" +
-        "<h5 id='hp1' class='text-center'>HP " + character1.healthPoints + "</h5>" + "</div>")
+        "<h5 id='hp1' class='text-center'>HP " + character1.healthPoints + " Attack " + character1.baseAttackPower + "</h5>" + "</div>")
   },
   clear: function(){
     if($("#char1").is(':visible')){
-      $("#char1").toggle();
+      $("#char1").toggle("fade");
     }
   },
   redo: function() {
     this.healthPoints = 100;
-    this.attackPower = 10;
-    this.baseAttackPower = 10;
-    this.counterAttackPower = 15;
+    this.attackPower = 15;
+    this.baseAttackPower = 15;
+    this.counterAttackPower = 20;
     if($("#char1").is(':hidden')){
-      $("#char1").toggle();
+      $("#char1").toggle("fade");
     }
     $("#char1").removeClass("enemy selected").appendTo("#choose-char");
-    $("#hp1").html("HP " + this.healthPoints);
+    $("#hp1").html("HP " + this.healthPoints + " Attack " + this.baseAttackPower);
   }
 }
 
 var character2 = {
   name: "Dave",
   healthPoints: 150,
-  attackPower: 20,
-  baseAttackPower: 20,
+  attackPower: 10,
+  baseAttackPower: 10,
   counterAttackPower: 20,
   div: function(){
     $("#char2").append("<div class='thumbnail'>" + "<h5 class='text-center'>" + character2.name + "</h5>" +
         "<img src='http://placehold.it/242x200'>" +
-        "<h5 id='hp2' class='text-center'>HP " + character2.healthPoints + "</h5>" + "</div>")
+        "<h5 id='hp2' class='text-center'>HP " + character2.healthPoints + " Attack " + character2.baseAttackPower + "</h5>" + "</div>")
   },
   clear: function(){
     if($("#char2").is(':visible')){
-      $("#char2").toggle();
+      $("#char2").toggle("fade");
     }
   },
   redo: function() {
     this.healthPoints = 150;
-    this.attackPower = 20;
-    this.baseAttackPower = 20;
+    this.attackPower = 10;
+    this.baseAttackPower = 10;
     this.counterAttackPower = 20;
     if($("#char2").is(':hidden')){
-      $("#char2").toggle();
+      $("#char2").toggle("fade");
     }
     $("#char2").removeClass("enemy selected").appendTo("#choose-char");
-    $("#hp2").html("HP " + this.healthPoints);
+    $("#hp2").html("HP " + this.healthPoints + " Attack " + this.baseAttackPower);
   }
 }
 
@@ -76,11 +76,11 @@ var character3 = {
   div: function(){
     $("#char3").append("<div class='thumbnail'>" + "<h5 class='text-center'>" + character3.name + "</h5>" +
         "<img src='http://placehold.it/242x200'>" +
-        "<h5 id='hp3' class='text-center'>HP " + character3.healthPoints + "</h5>" + "</div>")
+        "<h5 id='hp3' class='text-center'>HP " + character3.healthPoints + " Attack " + character3.baseAttackPower + "</h5>" + "</div>")
   },
   clear: function(){
     if($("#char3").is(':visible')){
-      $("#char3").toggle();
+      $("#char3").toggle("fade");
     }
   },
   redo: function() {
@@ -89,40 +89,39 @@ var character3 = {
     this.baseAttackPower = 11;
     this.counterAttackPower = 25;
     if($("#char3").is(':hidden')){
-      $("#char3").toggle();
+      $("#char3").toggle("fade");
     }
     $("#char3").removeClass("enemy selected").appendTo("#choose-char");
-    $("#hp3").html("HP " + this.healthPoints);
+    $("#hp3").html("HP " + this.healthPoints + " Attack " + this.baseAttackPower);
   }
 }
 
 var character4 = {
   name: "Alex",
   healthPoints: 170,
-  attackPower: 17,
-  baseAttackPower: 17,
+  attackPower: 8,
+  baseAttackPower: 8,
   counterAttackPower: 21,
   div: function(){
     $("#char4").append("<div class='thumbnail'>" + "<h5 class='text-center'>" + character4.name + "</h5>" +
         "<img src='http://placehold.it/242x200'>" +
-        "<h5 id='hp4' class='text-center'>HP " + character4.healthPoints + "</h5>" + "</div>")
+        "<h5 id='hp4' class='text-center'>HP " + character4.healthPoints + " Attack " + character4.baseAttackPower + "</h5>" + "</div>")
   },
   clear: function(){
     if($("#char4").is(':visible')){
-      console.log("clear ran");
-      $("#char4").toggle();
+      $("#char4").toggle("fade");
     }
   },
   redo: function() {
     this.healthPoints = 170;
-    this.attackPower = 17;
-    this.baseAttackPower = 17;
+    this.attackPower = 8;
+    this.baseAttackPower = 8;
     this.counterAttackPower = 21;
     if($("#char4").is(':hidden')){
-      $("#char4").toggle();
+      $("#char4").toggle("fade");
     }
     $("#char4").removeClass("enemy selected").appendTo("#choose-char");
-    $("#hp4").html("HP " + this.healthPoints);
+    $("#hp4").html("HP " + this.healthPoints + " Attack " + this.baseAttackPower);
   }
 }
 
@@ -151,7 +150,7 @@ function heroAttack(){
   villainDiv.effect("shake");
   villain.healthPoints -= hero.attackPower;
   hero.attackPower += hero.baseAttackPower;
-  villainHP.html("HP " + villain.healthPoints);
+  villainHP.html("HP " + villain.healthPoints + " Attack " + villain.baseAttackPower);
   if(villain.healthPoints <= 0){
     villainDied();
   } else if(hero.healthPoints > 0){
@@ -160,9 +159,10 @@ function heroAttack(){
 }
 
 function villainAttack(){
+  console.log("villain attacks");
   heroDiv.effect("shake");
   hero.healthPoints -= villain.attackPower;
-  heroHP.html("HP " + hero.healthPoints);
+  heroHP.html("HP " + hero.healthPoints + " Attack " + hero.baseAttackPower);
   if(hero.healthPoints <= 0){
     heroDied();
    }  
@@ -171,7 +171,7 @@ function villainAttack(){
 function heroDied(){
   alert("You lose!");
   hero.clear();
-  callRedo();
+  setTimeout(callRedo, 1000);
   setData();
   madeSelection = false;
   defenderSelection = false;
@@ -191,7 +191,7 @@ function winCondition(){
   defenderSelection = false;
   villainsLeft = 3;
   hero.clear();
-  callRedo();
+  setTimeout(callRedo, 1000);
   setData();
 }
 
@@ -235,7 +235,7 @@ $( document ).ready(function() {
    heroAttack();
 
    if(villainsLeft === 0){
-    winCondition();
+    setTimeout(winCondition, 3000);
    }
 
  })
