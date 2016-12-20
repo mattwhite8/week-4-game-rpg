@@ -9,7 +9,7 @@ var heroDiv;
 var villainDiv;
 
 var character1 = {
-  name: "Matt",
+  name: "Doom Guy",
   healthPoints: 100,
   attackPower: 15,
   baseAttackPower: 15,
@@ -17,7 +17,7 @@ var character1 = {
   hpID: "hp1",
   div: function(){
     $("#char1").append("<div class='thumbnail' >" + "<h5 class='text-center'>" + character1.name + "</h5>" +
-        "<img src='http://placehold.it/242x200'>" +
+        "<img src='http://rs61.pbsrc.com/albums/h57/Big_Lumpy_Tool/doomdance.gif~c200'>" +
         "<h5 id='hp1' class='text-center'>HP " + character1.healthPoints + " Attack " + character1.baseAttackPower + "</h5>" + "</div>")
   },
   clear: function(){
@@ -39,14 +39,14 @@ var character1 = {
 }
 
 var character2 = {
-  name: "Dave",
+  name: "Machine Gun Dude",
   healthPoints: 150,
   attackPower: 10,
   baseAttackPower: 10,
   counterAttackPower: 20,
   div: function(){
     $("#char2").append("<div class='thumbnail'>" + "<h5 class='text-center'>" + character2.name + "</h5>" +
-        "<img src='http://placehold.it/242x200'>" +
+        "<img src='http://cdn.ebaumsworld.com/mediaFiles/picture/872200/81576284.gif'>" +
         "<h5 id='hp2' class='text-center'>HP " + character2.healthPoints + " Attack " + character2.baseAttackPower + "</h5>" + "</div>")
   },
   clear: function(){
@@ -68,14 +68,14 @@ var character2 = {
 }
 
 var character3 = {
-  name: "Sam",
+  name: "Hell Knight",
   healthPoints: 130,
   attackPower: 11,
   baseAttackPower: 11,
   counterAttackPower: 25,
   div: function(){
     $("#char3").append("<div class='thumbnail'>" + "<h5 class='text-center'>" + character3.name + "</h5>" +
-        "<img src='http://placehold.it/242x200'>" +
+        "<img src='http://rs624.pbsrc.com/albums/tt323/dangerous327/3118.gif~c200'>" +
         "<h5 id='hp3' class='text-center'>HP " + character3.healthPoints + " Attack " + character3.baseAttackPower + "</h5>" + "</div>")
   },
   clear: function(){
@@ -97,14 +97,14 @@ var character3 = {
 }
 
 var character4 = {
-  name: "Alex",
+  name: "Pain Elemental",
   healthPoints: 170,
   attackPower: 8,
   baseAttackPower: 8,
   counterAttackPower: 21,
   div: function(){
     $("#char4").append("<div class='thumbnail'>" + "<h5 class='text-center'>" + character4.name + "</h5>" +
-        "<img src='http://placehold.it/242x200'>" +
+        "<img src='http://66.media.tumblr.com/6029a122bab4e4b7a99467d2c41715d3/tumblr_mhtvqzI8W21rmu6i5o1_500.gif'>" +
         "<h5 id='hp4' class='text-center'>HP " + character4.healthPoints + " Attack " + character4.baseAttackPower + "</h5>" + "</div>")
   },
   clear: function(){
@@ -196,6 +196,9 @@ function winCondition(){
 }
 
 $( document ).ready(function() {
+
+  const startAudio = $("#startAudio");
+  startAudio.get(0).play();
 
   createDivs();
   setData();

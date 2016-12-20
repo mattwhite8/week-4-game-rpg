@@ -6,6 +6,30 @@
   border: 3px solid red;
 } */
 
+@font-face {
+	font-family: doom;
+	src: url(../fonts/DooM.ttf);
+}
+
+body {
+	background: url("http://www.sz0931.com/data/out/26/52642831-doom-wallpaper.jpg") no-repeat center center fixed;
+	font-family: doom;
+	color: #ccc;
+}
+
+h5 {
+	color: red;
+}
+
+img {
+	max-height: 164.78px;
+}
+
+ #sub{
+	color: #fe2;
+}
+
 .thumbnail {
-  border: 5px solid #ddd;
+  	border: 5px solid #ddd;
+  	background: url("http://i.imgur.com/mCJr6.jpg") no-repeat center;
 }
