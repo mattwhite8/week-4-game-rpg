@@ -1,12 +1,17 @@
 var madeSelection = false;
 var defenderSelection = false;
 var villainsLeft = 3;
+var wins = 0;
+var losses = 0;
 var hero;
 var villain;
 var heroHP;
 var villainHP;
 var heroDiv;
 var villainDiv;
+const creatureDeath = $("#creatureDeath");
+const hurt = $("#hurt");
+const death = $("#death");
 
 var character1 = {
   name: "Doom Guy",
@@ -148,6 +153,7 @@ function callRedo(){
 
 function heroAttack(){
   villainDiv.effect("shake");
+  hurt.get(0).play();
   villain.healthPoints -= hero.attackPower;
   hero.attackPower += hero.baseAttackPower;
   villainHP.html("HP " + villain.healthPoints + " Attack " + villain.baseAttackPower);
@@ -160,6 +166,7 @@ function heroAttack(){
 
 function villainAttack(){
   console.log("villain attacks");
+  hurt.get(0).play();
   heroDiv.effect("shake");
   hero.healthPoints -= villain.attackPower;
   heroHP.html("HP " + hero.healthPoints + " Attack " + hero.baseAttackPower);
@@ -170,15 +177,19 @@ function villainAttack(){
 
 function heroDied(){
   alert("You lose!");
+  death.get(0).play();
   hero.clear();
   setTimeout(callRedo, 1000);
   setData();
+  losses++;
+  $("#winloss").html("Wins " + wins + "Losses " + losses);
   madeSelection = false;
   defenderSelection = false;
 }
 
 function villainDied(){
   console.log("villain died");
+  creatureDeath.get(0).play();
   villain.clear();
   villainsLeft--;
   defenderSelection = false;
@@ -190,9 +201,11 @@ function winCondition(){
   madeSelection = false;
   defenderSelection = false;
   villainsLeft = 3;
+  wins++;
   hero.clear();
   setTimeout(callRedo, 1000);
   setData();
+  $("#winloss").html("Wins " + wins + "Losses " + losses);
 }
 
 $( document ).ready(function() {
