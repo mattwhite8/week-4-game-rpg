@@ -182,7 +182,7 @@ function heroDied(){
   setTimeout(callRedo, 1000);
   setData();
   losses++;
-  $("#winloss").html("Wins " + wins + "Losses " + losses);
+  $("#winloss").html("Wins " + wins + " Losses " + losses);
   madeSelection = false;
   defenderSelection = false;
 }
@@ -205,7 +205,7 @@ function winCondition(){
   hero.clear();
   setTimeout(callRedo, 1000);
   setData();
-  $("#winloss").html("Wins " + wins + "Losses " + losses);
+  $("#winloss").html("Wins " + wins + " Losses " + losses);
 }
 
 $( document ).ready(function() {
@@ -223,7 +223,7 @@ $( document ).ready(function() {
       var siblings = $(this).siblings(".char");
       siblings.addClass("enemy");
       siblings.appendTo($("#to-attack"));
-      $(this).appendTo($("#your-char")).addClass("selected");
+      $(this).appendTo($("#your-char"));
       hero = $(this).data();
       heroHP = $(this).find(`[id*="hp"]`);
       heroDiv = $(this);
