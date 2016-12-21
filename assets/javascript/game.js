@@ -48,7 +48,7 @@ var character2 = {
   healthPoints: 150,
   attackPower: 10,
   baseAttackPower: 10,
-  counterAttackPower: 20,
+  counterAttackPower: 30,
   div: function(){
     $("#char2").append("<div class='thumbnail'>" + "<h5 class='text-center'>" + character2.name + "</h5>" +
         "<img src='http://cdn.ebaumsworld.com/mediaFiles/picture/872200/81576284.gif'>" +
@@ -63,7 +63,7 @@ var character2 = {
     this.healthPoints = 150;
     this.attackPower = 10;
     this.baseAttackPower = 10;
-    this.counterAttackPower = 20;
+    this.counterAttackPower = 30;
     if($("#char2").is(':hidden')){
       $("#char2").toggle("fade");
     }
@@ -75,9 +75,9 @@ var character2 = {
 var character3 = {
   name: "Hell Knight",
   healthPoints: 130,
-  attackPower: 11,
-  baseAttackPower: 11,
-  counterAttackPower: 25,
+  attackPower: 20,
+  baseAttackPower: 20,
+  counterAttackPower: 35,
   div: function(){
     $("#char3").append("<div class='thumbnail'>" + "<h5 class='text-center'>" + character3.name + "</h5>" +
         "<img src='http://rs624.pbsrc.com/albums/tt323/dangerous327/3118.gif~c200'>" +
@@ -90,9 +90,9 @@ var character3 = {
   },
   redo: function() {
     this.healthPoints = 130;
-    this.attackPower = 11;
-    this.baseAttackPower = 11;
-    this.counterAttackPower = 25;
+    this.attackPower = 20;
+    this.baseAttackPower = 20;
+    this.counterAttackPower = 35;
     if($("#char3").is(':hidden')){
       $("#char3").toggle("fade");
     }
@@ -104,9 +104,9 @@ var character3 = {
 var character4 = {
   name: "Pain Elemental",
   healthPoints: 170,
-  attackPower: 8,
-  baseAttackPower: 8,
-  counterAttackPower: 21,
+  attackPower: 15,
+  baseAttackPower: 15,
+  counterAttackPower: 40,
   div: function(){
     $("#char4").append("<div class='thumbnail'>" + "<h5 class='text-center'>" + character4.name + "</h5>" +
         "<img src='http://66.media.tumblr.com/6029a122bab4e4b7a99467d2c41715d3/tumblr_mhtvqzI8W21rmu6i5o1_500.gif'>" +
@@ -119,9 +119,9 @@ var character4 = {
   },
   redo: function() {
     this.healthPoints = 170;
-    this.attackPower = 8;
-    this.baseAttackPower = 8;
-    this.counterAttackPower = 21;
+    this.attackPower = 15;
+    this.baseAttackPower = 15;
+    this.counterAttackPower = 40;
     if($("#char4").is(':hidden')){
       $("#char4").toggle("fade");
     }
